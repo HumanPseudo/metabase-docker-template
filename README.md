@@ -9,3 +9,6 @@
 
 ## Some considerations
 By default, this template will use PostgresSQL with the default database for Metabase settings. For you to work with your data, after installation you need to connect your source data, like MySQL, Postgres, redshift, wherever.
+
+### Some Documentation
+https://www.notion.so/Reportador-3540277ef58b4059bec265f8105d3164
