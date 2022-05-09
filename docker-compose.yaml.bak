@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+
+    nginx:
+        image: nginx
+        restart: unless-stopped
+        mem_limit: 300m
+        mem_reservation: 100m
+        cpus: 0.3
+        ports:
+          - 8000
