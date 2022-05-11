@@ -2,7 +2,14 @@ version: "3"
 services:
 
   metabase-db:
-    image: postgres:13.1-alpine
+
+    # Imagen
+    image: postgres
+
+    # Limitacion de recursos
+    mem_limit: 1G
+    mem_reservation: 1G
+    cpus: 0.2
     restart: always
     container_name: metabase-db
     volumes:
@@ -14,24 +21,14 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-
-  metabase-nginx:
-    image: nginx:stable
-    restart: always
-    container_name: metabase-nginx
-    ports:
-      #- 80:80
-      #- 443:443
-    depends_on:
-      - "metabase"
-    networks:
-      - metabase
-    volumes:
-      - "./nginx-service.conf:/etc/nginx/conf.d/default.conf"
-
   metabase:
     image: metabase/metabase:latest
     restart: always
+
+    # Limitacion de recursos
+    mem_limit: 3G
+    mem_reservation: 3G
+    cpus: 3
     container_name: metabase
     environment:
       MB_DB_TYPE: "postgres"
